@@ -5,27 +5,52 @@ module.exports = {
     name: Events.InteractionCreate,
     async execute(interaction) {
         if (!interaction.isButton() || interaction.customId !== 'Click') return;
-        // console.log(interaction.user.username);
-
-        // try {
-        //     const tag = await Users.create({
-        //         username: interaction.user.username
-        //     });
 
 
-        //     return interaction.reply(`Tag ${tag.username} added.`);
-        // } catch (error) {
-        //     // console.error("An error occurred during User creation:", error);
+        myUser = interaction.user.username
 
-        //     if (error.name === "SequelizeUniqueConstraintError") {
-        //         return interaction.reply("That tag already exists.");
-        //     }
-        // }
+        const user = await Users.findOne({ where: { username: myUser } });
+
+        if (user) {
+            const addClick = user.current_click + user.click_value;
+            const totalClick = user.click_count + user.click_value
+            await Users.update(
+                { current_click: addClick, click_count: totalClick },
+                { where: { username: interaction.user.username } }
+            );
+            return interaction.reply(`Mon cpc est de : ${user.click_value}\nLE total de mes click: ${user.click_count}\nMon nombre de click actuel est de : ${user.current_click}`);
+
+
+        }
+        return interaction.reply(`Could not find tag: ${myUser}`);
+
+
+
+        console.log(interaction.user.username);
+
+        try {
+            const tag = await Users.create({
+                username: interaction.user.username
+            });
+
+
+            return interaction.reply(`Tag ${tag.username} added.`);
+        } catch (error) {
+            // console.error("An error occurred during User creation:", error);
+
+            if (error.name === "SequelizeUniqueConstraintError") {
+
+                console.log('cest la mercde')
+                console.log(error);
+                await execute("commands/login/login.js")
+
+            }
+
+        }
 
 
 
         try {
-            console.log("_____________________________")
             const clickerData = await Users.findOne({
                 where: { username: interaction.user.username },
                 attributes: ['click_value', 'click_count', 'current_click']
