@@ -8,5 +8,6 @@ const sequelize = new Sequelize("database", "username", "password", {
 });
 
 const Tags = require("./models/tags.js")(sequelize, Sequelize.DataTypes);
+const Users = require("./models/users.js")(sequelize, Sequelize.DataTypes);
 
-module.exports = { Tags };
+module.exports = { Tags, Users };
