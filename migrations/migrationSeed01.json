@@ -1,0 +1,32 @@
+{
+  "itemsMigrations": [
+    {
+      "item_name": "baton",
+      "damage": 1,
+      "price": 2,
+      "bonus": 0,
+      "passive": false
+    },
+    {
+      "item_name": "dague",
+      "damage": 3,
+      "price": 5,
+      "bonus": 0,
+      "passive": false
+    },
+    {
+      "item_name": "sword",
+      "damage": 8,
+      "price": 9,
+      "bonus": 0,
+      "passive": false
+    },
+    {
+      "item_name": "axe",
+      "damage": 110,
+      "price": "80",
+      "bonus": 0,
+      "passive": false
+    }
+  ]
+}

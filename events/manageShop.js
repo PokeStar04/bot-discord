@@ -1,56 +1,63 @@
 
 const { Users } = require("../dbObjects.js");
 const { Events } = require("discord.js");
-
+const { Items } = require("../dbObjects.js");
+const { Shop } = require("../dbObjects.js");
 
 module.exports = {
     name: Events.InteractionCreate,
     async execute(interaction) {
         if (!interaction.isButton()) return;
-
+        const myUser = interaction.user.username
         const customId = interaction.customId;
-
-        let responseMessage = '';
-        const clickerData = await Users.findOne({
-            where: { username: interaction.user.username },
-            attributes: ['click_value', 'click_count', 'current_click']
+        const userData = await Users.findOne({
+            where: { username: myUser }
         });
-        // Utilisez des déclarations conditionnelles pour déterminer le message en fonction de customId
-        if (customId === 'Click1' && clickerData.current_click >= 3) {
-            const cost = 3
-            await Users.update(
-                { click_value: clickerData.click_value + 1, current_click: clickerData.current_click - cost },
-                { where: { username: interaction.user.username } }
-            );
-            responseMessage = 'Increase the power of your click (1)';
-        } else if (customId === 'Click5' && clickerData.current_click >= 13) {
-            const cost = 13
-            await Users.update(
-                { click_value: clickerData.click_value + 5, current_click: clickerData.current_click - cost },
-                { where: { username: interaction.user.username } }
-            );
-            responseMessage = 'Increase the power of your click (5)';
-        } else if (customId === 'Click10' && clickerData.current_click >= 24) {
-            const cost = 24
-            await Users.update(
-                { click_value: clickerData.click_value + 10, current_click: clickerData.current_click - cost },
-                { where: { username: interaction.user.username } }
-            );
-            responseMessage = 'Increase the power of your click (10)';
-        } else if (customId === 'Click100' && clickerData.current_click >= 100) {
-            const cost = 80
-            await Users.update(
-                { click_value: clickerData.click_value + 100, current_click: clickerData.current_click - cost },
-                { where: { username: interaction.user.username } }
-            );
-            responseMessage = 'Increase the power of your click (100)';
-        } else {
-            // Si l'identifiant personnalisé n'est pas 'Click1', 'Click5' ou 'Click10'
-            return;
+        const userId = userData.id;
+        const itemData = await Items.findAll({});
+        for (let currentItem = 0; currentItem < itemData.length; currentItem++) {
+            if (customId == itemData[currentItem].item_name && userData.current_click >= itemData[currentItem].price) {
+                const existingShopRecord = await Shop.findOne({
+                    where: {
+                        idUsers: userId,
+                        idItems: itemData[currentItem].id,
+                    },
+                });
+                if (existingShopRecord) {
+                    // Update the existing record if it exists
+                    await existingShopRecord.update({
+                        item_number: existingShopRecord.item_number + 1,
+                    });
+                } else {
+                    // Create a new record if it doesn't exist
+                    await Shop.create({
+                        idUsers: userId,
+                        idItems: itemData[currentItem].id,
+                        item_number: 1,
+                    });
+                }
+                const updatedShop = await Shop.findAll({
+                    where: { idUsers: userId },
+                });
+                let totalDamage = 0;
+                for (const shopRecord of updatedShop) {
+                    const itemId = shopRecord.idItems;
+                    const itemNumber = shopRecord.item_number;
+                    const itemDetails = await Items.findByPk(itemId);
+                    if (itemDetails) {
+                        const damagePerItem = itemDetails.damage;
+                        totalDamage += damagePerItem * itemNumber;
+                    } else {
+                        console.log(`Item with ID ${itemId} not found.`);
+                    }
+                }
+                await Users.update(
+                    { click_value: totalDamage, current_click: userData.current_click - itemData[currentItem].price },
+                    { where: { username: myUser } }
+                );
+                return interaction.reply(`${itemData[currentItem].item_name} Acheté. pour ${itemData[currentItem].price} vous avez gagner  ${itemData[currentItem].damage} de force`);
+            }
         }
-
-        await interaction.reply({
-            content: responseMessage,
-        });
+        return
     }
 };
