@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
     return sequelize.define(
-        "objets",
+        "items",
         {
             item_name: {
                 type: Sequelize.STRING,
@@ -11,7 +11,14 @@ module.exports = (sequelize, DataTypes) => {
             damage: {
                 type: Sequelize.INTEGER,
                 defaultValue: 1,
-
+            },
+            price: {
+                type: Sequelize.INTEGER,
+                defaultValue: 1,
+            },
+            bonus: {
+                type: Sequelize.INTEGER,
+                defaultValue: 0,
             },
             passive: Sequelize.BOOLEAN,
             timestamps: false

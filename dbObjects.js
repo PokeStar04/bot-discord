@@ -10,6 +10,6 @@ const sequelize = new Sequelize("database", "username", "password", {
 const Tags = require("./models/tags.js")(sequelize, Sequelize.DataTypes);
 const Users = require("./models/users.js")(sequelize, Sequelize.DataTypes);
 const Shop = require("./models/shop.js")(sequelize, Sequelize.DataTypes);
-const Objet = require("./models/objets.js")(sequelize, Sequelize.DataTypes);
+const Items = require("./models/items.js")(sequelize, Sequelize.DataTypes);
 
-module.exports = { Tags, Users, Shop, Objet };
+module.exports = { Tags, Users, Shop, Items };
