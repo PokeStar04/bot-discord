@@ -13,7 +13,6 @@ module.exports = {
       );
       return;
     }
-
     try {
       await command.execute(interaction);
     } catch (error) {
