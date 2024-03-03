@@ -1,0 +1,276 @@
+{
+  "itemsMigrations": [
+    {
+      "item_name": "baton",
+      "damage": 1,
+      "price": 2,
+      "bonus": 0,
+      "passive": false
+    },
+    {
+      "item_name": "dague",
+      "damage": 3,
+      "price": 5,
+      "bonus": 0,
+      "passive": false
+    },
+    {
+      "item_name": "sword",
+      "damage": 8,
+      "price": 9,
+      "bonus": 0,
+      "passive": false
+    },
+    {
+      "item_name": "axe",
+      "damage": 110,
+      "price": "80",
+      "bonus": 0,
+      "passive": false
+    }
+  ],
+  "monstersMigrations": [
+    {
+      "monster_name": "Gobelin",
+      "health": 10,
+      "max_health": 10,
+      "gold": 2,
+      "level": 1,
+      "image_path": "../src/asset/monster/gobelin.png"
+    },
+    {
+      "monster_name": "Ailge",
+      "health": 10,
+      "max_health": 10,
+      "gold": 2,
+      "level": 1,
+      "image_path": "../src/asset/monster/aigle.png"
+    },
+    {
+      "monster_name": "Orc",
+      "health": 10,
+      "max_health": 10,
+      "gold": 2,
+      "level": 1,
+      "image_path": "../src/asset/monster/orc.png"
+    },
+    {
+      "monster_name": "Golem",
+      "health": 10,
+      "max_health": 10,
+      "gold": 2,
+      "level": 1,
+      "image_path": "../src/asset/monster/golem.png"
+    },
+    {
+      "monster_name": "Archer",
+      "health": 10,
+      "max_health": 10,
+      "gold": 2,
+      "level": 1,
+      "image_path": "../src/asset/monster/archer.png"
+    }
+  ],
+  "stagesMigrations": [
+    {
+      "stages_level": 1,
+      "monster_number": 1
+    },
+    {
+      "stages_level": 2,
+      "monster_number": 1
+    },
+    {
+      "stages_level": 3,
+      "monster_number": 1
+    },
+    {
+      "stages_level": 4,
+      "monster_number": 1
+    },
+    {
+      "stages_level": 5,
+      "monster_number": 8
+    },
+    {
+      "stages_level": 6,
+      "monster_number": 5
+    },
+    {
+      "stages_level": 7,
+      "monster_number": 1
+    },
+    {
+      "stages_level": 8,
+      "monster_number": 3
+    },
+    {
+      "stages_level": 9,
+      "monster_number": 7
+    },
+    {
+      "stages_level": 10,
+      "monster_number": 2
+    },
+    {
+      "stages_level": 11,
+      "monster_number": 4
+    },
+    {
+      "stages_level": 12,
+      "monster_number": 1
+    },
+    {
+      "stages_level": 13,
+      "monster_number": 5
+    },
+    {
+      "stages_level": 14,
+      "monster_number": 8
+    },
+    {
+      "stages_level": 15,
+      "monster_number": 6
+    },
+    {
+      "stages_level": 16,
+      "monster_number": 3
+    },
+    {
+      "stages_level": 17,
+      "monster_number": 4
+    },
+    {
+      "stages_level": 18,
+      "monster_number": 1
+    },
+    {
+      "stages_level": 19,
+      "monster_number": 2
+    },
+    {
+      "stages_level": 20,
+      "monster_number": 8
+    },
+    {
+      "stages_level": 21,
+      "monster_number": 7
+    },
+    {
+      "stages_level": 22,
+      "monster_number": 6
+    },
+    {
+      "stages_level": 23,
+      "monster_number": 3
+    },
+    {
+      "stages_level": 24,
+      "monster_number": 5
+    },
+    {
+      "stages_level": 25,
+      "monster_number": 4
+    },
+    {
+      "stages_level": 26,
+      "monster_number": 2
+    },
+    {
+      "stages_level": 27,
+      "monster_number": 1
+    },
+    {
+      "stages_level": 28,
+      "monster_number": 6
+    },
+    {
+      "stages_level": 29,
+      "monster_number": 8
+    },
+    {
+      "stages_level": 30,
+      "monster_number": 5
+    },
+    {
+      "stages_level": 31,
+      "monster_number": 3
+    },
+    {
+      "stages_level": 32,
+      "monster_number": 4
+    },
+    {
+      "stages_level": 33,
+      "monster_number": 7
+    },
+    {
+      "stages_level": 34,
+      "monster_number": 2
+    },
+    {
+      "stages_level": 35,
+      "monster_number": 1
+    },
+    {
+      "stages_level": 36,
+      "monster_number": 6
+    },
+    {
+      "stages_level": 37,
+      "monster_number": 5
+    },
+    {
+      "stages_level": 38,
+      "monster_number": 4
+    },
+    {
+      "stages_level": 39,
+      "monster_number": 3
+    },
+    {
+      "stages_level": 40,
+      "monster_number": 2
+    },
+    {
+      "stages_level": 41,
+      "monster_number": 7
+    },
+    {
+      "stages_level": 42,
+      "monster_number": 8
+    },
+    {
+      "stages_level": 43,
+      "monster_number": 5
+    },
+    {
+      "stages_level": 44,
+      "monster_number": 1
+    },
+    {
+      "stages_level": 45,
+      "monster_number": 6
+    },
+    {
+      "stages_level": 46,
+      "monster_number": 4
+    },
+    {
+      "stages_level": 47,
+      "monster_number": 3
+    },
+    {
+      "stages_level": 48,
+      "monster_number": 2
+    },
+    {
+      "stages_level": 49,
+      "monster_number": 7
+    },
+    {
+      "stages_level": 50,
+      "monster_number": 8
+    }
+  ]
+}

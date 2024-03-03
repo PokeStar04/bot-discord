@@ -8,6 +8,12 @@ const sequelize = new Sequelize("database", "username", "password", {
 });
 
 require("./models/tags.js")(sequelize, Sequelize.DataTypes);
+require("./models/users.js")(sequelize, Sequelize.DataTypes);
+require("./models/items.js")(sequelize, Sequelize.DataTypes);
+require("./models/shop.js")(sequelize, Sequelize.DataTypes);
+require("./models/monsters.js")(sequelize, Sequelize.DataTypes);
+require("./models/stages.js")(sequelize, Sequelize.DataTypes);
+require("./models/monstersStages.js")(sequelize, Sequelize.DataTypes);
 
 const force = process.argv.includes("--force") || process.argv.includes("-f");
 
