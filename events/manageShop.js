@@ -55,10 +55,17 @@ module.exports = {
                     { click_value: totalDamage, gold: userData.gold - itemData[currentItem].price },
                     { where: { username: myUser } }
                 );
+
                 return interaction.reply(`${itemData[currentItem].item_name} Acheté. pour ${itemData[currentItem].price} vous avez gagner  ${itemData[currentItem].damage} de force`);
             }
+            if (customId == itemData[currentItem].item_name && userData.gold < itemData[currentItem].price) {
+                return interaction.reply(`${itemData[currentItem].item_name} est trop cher il te manque ${itemData[currentItem].price - userData.gold} gold`);
 
+            }
+
+            //return interaction.reply(`tre`);
         }
         return
+
     }
 };
