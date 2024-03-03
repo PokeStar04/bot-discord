@@ -3,6 +3,8 @@ const fs = require("node:fs");
 const path = require("node:path");
 const { Client, Collection, GatewayIntentBits, Events } = require("discord.js");
 const { token } = require("./config.json");
+const Canvas = require('@napi-rs/canvas');
+
 
 // Create a new client to run the bot
 const client = new Client({

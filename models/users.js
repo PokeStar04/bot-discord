@@ -18,11 +18,17 @@ module.exports = (sequelize, DataTypes) => {
                 defaultValue: 0,
                 allowNull: false
             },
-            current_click: {
+            gold: {
                 type: Sequelize.INTEGER,
-                defaultValue: 0,
+                defaultValue: 15,
                 allowNull: false
             }
+            , current_stage: {
+                type: Sequelize.INTEGER,
+                defaultValue: 1,
+                allowNull: false
+            }
+
         },
         {
             timestamps: false
