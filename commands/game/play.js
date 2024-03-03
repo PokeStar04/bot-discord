@@ -1,9 +1,7 @@
-const {
-    ActionRowBuilder,
-    ButtonBuilder,
-    ButtonStyle,
-    SlashCommandBuilder
-} = require("discord.js");
+// Votre fichier principal (par exemple, playCommand.js)
+const { ActionRowBuilder, ButtonBuilder, ButtonStyle, SlashCommandBuilder, AttachmentBuilder } = require("discord.js");
+const generateCanvas = require('../../events/canvaPlay');
+let row; // Définissez row en dehors de la fonction execute
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -11,10 +9,6 @@ module.exports = {
         .setDescription("Jouer au clicker")
     ,
     async execute(interaction) {
-        const target = interaction.options.getUser("target");
-        const reason =
-            interaction.options.getString("reason") ?? "No reason provided";
-
         const clicker = new ButtonBuilder()
             .setCustomId("Click")
             .setLabel("Click")
@@ -24,18 +18,24 @@ module.exports = {
             .setCustomId("Shop")
             .setLabel("Shop")
             .setStyle(ButtonStyle.Secondary);
-        const row = new ActionRowBuilder().addComponents(clicker, shop);
+        const refresh = new ButtonBuilder()
+            .setCustomId("Refresh")
+            .setLabel("Refresh")
+            .setStyle(ButtonStyle.Primary);
 
+        row = new ActionRowBuilder().addComponents(clicker, shop, refresh); // Affectez la valeur de row ici
 
-
-
+        const canvas = await generateCanvas(interaction);
+        const attachment = new AttachmentBuilder(await canvas.encode('png'), { name: 'avatar.png' });
 
         await interaction.reply({
-            content: `Are you s`,
+            content: `Click ! Click ! Click ! `,
             components: [row],
-            files: [
-                'src/asset/monster/monster1.jpeg',
-            ],
+            files: [attachment],
         });
+
+    },
+    getRow: function () {
+        return row;
     }
 };

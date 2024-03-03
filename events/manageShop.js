@@ -16,7 +16,7 @@ module.exports = {
         const userId = userData.id;
         const itemData = await Items.findAll({});
         for (let currentItem = 0; currentItem < itemData.length; currentItem++) {
-            if (customId == itemData[currentItem].item_name && userData.current_click >= itemData[currentItem].price) {
+            if (customId == itemData[currentItem].item_name && userData.gold >= itemData[currentItem].price) {
                 const existingShopRecord = await Shop.findOne({
                     where: {
                         idUsers: userId,
@@ -52,11 +52,12 @@ module.exports = {
                     }
                 }
                 await Users.update(
-                    { click_value: totalDamage, current_click: userData.current_click - itemData[currentItem].price },
+                    { click_value: totalDamage, gold: userData.gold - itemData[currentItem].price },
                     { where: { username: myUser } }
                 );
                 return interaction.reply(`${itemData[currentItem].item_name} Acheté. pour ${itemData[currentItem].price} vous avez gagner  ${itemData[currentItem].damage} de force`);
             }
+
         }
         return
     }
